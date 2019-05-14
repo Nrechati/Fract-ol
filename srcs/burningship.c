@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 15:18:51 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 15:22:46 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 16:18:34 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int			is_burning_ship(t_mlx *mlx, int x, int y)
 	t_comp c;
 
 	i = 0;
+	mlx->x_pad = 0.5;
+	mlx->y_pad = -0.5;
 	c.re = 2 * (x - mlx->w2) / (mlx->zoom * mlx->w2) - mlx->x_pad;
 	c.im = (y - mlx->h2) / (mlx->zoom * mlx->h2) + mlx->y_pad;
 	return (iterate_burning_ship(mlx, c));

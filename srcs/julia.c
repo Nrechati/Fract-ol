@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 14:25:00 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 15:16:16 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 16:18:04 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int				is_julia(t_mlx *mlx, int x, int y)
 	t_comp	pt;
 
 	i = 0;
+	mlx->x_pad = 0;
+	mlx->y_pad = 0;
 	pt.re = 2 * (x - mlx->w2) / (mlx->zoom * mlx->w2) - mlx->x_pad;
 	pt.im = (y - mlx->h2) / (mlx->zoom * mlx->h2) + mlx->y_pad;
 	return (iterate_julia(mlx, pt));
