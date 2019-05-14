@@ -6,7 +6,7 @@
 #    By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/04 17:06:21 by nrechati          #+#    #+#              #
-#    Updated: 2019/05/13 15:45:19 by nrechati         ###   ########.fr        #
+#    Updated: 2019/05/14 10:38:54 by nrechati         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,10 @@ LIB_AUX_DEPS = Libft/libft.a
 VPATH = ./srcs
 
 SRC += main.c
-SRC += init.c
 SRC += menu.c
 SRC += trace.c
+SRC += event.c
+SRC += mandelbrot.c
 
 # *************** OBJ **************** #
 
