@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 10:22:17 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 11:36:47 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:09:27 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int				is_mandelbrot(t_mlx *mlx, int x, int y)
 	t_comp	c;
 
 	i = 0;
-	c.re = 1.5 * (x - mlx->w / 2) / (0.5 * mlx->zoom * mlx->w) + mlx->x_pad;
-	c.im = (y - mlx->h / 2) / (0.5 * mlx->zoom * mlx->h) + mlx->y_pad;
+	c.re = 2 * (x - mlx->w2) / (mlx->zoom * mlx->w2) - mlx->x_pad;
+	c.im = (y - mlx->h2) / (mlx->zoom * mlx->h2) + mlx->y_pad;
 	return (iterate_mandelbrot(mlx, c));
 }

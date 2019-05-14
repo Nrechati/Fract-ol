@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 10:17:51 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 14:21:15 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:04:29 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	ft_move(t_mlx *mlx, int key)
 	else if ((key == 125 || key == 1) && mlx->y_pad < 10000)
 		mlx-> y_pad -= 0.05 / mlx->zoom;
 	else if ((key == 123 || key == 0) && mlx->x_pad > -10000)
-		mlx->x_pad += 0.05 / mlx->zoom;
-	else if ((key == 124 || key == 2) && mlx->x_pad < 10000)
 		mlx->x_pad -= 0.05 / mlx->zoom;
+	else if ((key == 124 || key == 2) && mlx->x_pad < 10000)
+		mlx->x_pad += 0.05 / mlx->zoom;
 	draw_fractol(mlx, TRUE);
 }
 
@@ -54,7 +54,7 @@ void	ft_iterate(t_mlx *mlx, int key)
 
 void	ft_reset(t_mlx *mlx)
 {
-	mlx->x_pad = -0.5;
+	mlx->x_pad = 0.5;
 	mlx->y_pad = 0;
 	mlx->zoom = 1;
 	mlx->iter = 100;

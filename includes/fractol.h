@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:01:13 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 14:24:28 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:05:09 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ typedef struct	s_mlx
 {
 	int			c;
 	int			h;
+	int			h2;
 	int			w;
+	int			w2;
 	double		x_pad;
 	double		y_pad;
 	double		zoom;
