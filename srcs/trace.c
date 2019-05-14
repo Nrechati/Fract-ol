@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:31:22 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 15:27:44 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 17:11:58 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int 			draw_fractol(t_mlx *mlx, int flag
 		while (x < mlx->w)
 		{
 			if ((*fractal)(mlx, x, y) == SUCCESS)
-				fill_pixel(mlx, x, y, mlx->c);
+				fill_pixel(mlx, x, y, get_color(mlx));
 			x++;
 		}
 		y++;

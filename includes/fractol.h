@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:01:13 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 15:46:04 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 17:11:08 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # define BURNING_SH 3
 # define BLACK 0x000000
 # define WHITE 0xffffff
-# define GREEN 0x1CD800
-# define BLUE 0x038FF9
+# define RED 0xFF0000
+# define GREEN 0x00FF00
+# define BLUE 0x0000FF
 # define ORANGE 0xff7f24
-# define RED 0xFF0033
 # define KEYPRESSMASK (1L << 0)
 # define KEYPRESS 2
 
@@ -53,6 +53,7 @@ typedef struct	s_mlx
 	int			*img_str;
 	int			img_size;
 	int			frac_nbr;
+	int			i;
 	double		x_pad;
 	double		y_pad;
 	double		zoom;
@@ -72,6 +73,8 @@ int				draw_fractol(t_mlx *mlx, int flag
 void			draw_menu(t_mlx *mlx);
 int				usage(char *error);
 void			init_mlx(t_mlx *mlx);
+void			init_scope(t_mlx *mlx);
+int				get_color(t_mlx *mlx);
 void			ft_close(t_mlx *mlx);
 void			ft_zoom(t_mlx *mlx, int key);
 void			ft_iterate(t_mlx *mlx, int key);

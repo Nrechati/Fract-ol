@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 10:17:51 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 15:46:15 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 16:42:33 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	ft_color(t_mlx *mlx)
 	if (mlx->c == BLUE)
 		mlx->c = GREEN;
 	else if (mlx->c == GREEN)
-		mlx->c = ORANGE;
-	else if (mlx->c == ORANGE)
 		mlx->c = RED;
 	else if (mlx->c == RED)
 		mlx->c = BLUE;
@@ -53,16 +51,19 @@ void	ft_next(t_mlx *mlx)
 	{
 		mlx->frac_nbr = JULIA;
 		mlx->fractal = is_julia;
+		init_scope(mlx);
 	}
 	else if (mlx->frac_nbr == JULIA)
 	{
 		mlx->frac_nbr = BURNING_SH;
 		mlx->fractal = is_burning_ship;
+		init_scope(mlx);
 	}
 	else if (mlx->frac_nbr == BURNING_SH)
 	{
 		mlx->frac_nbr = MANDELBROT;
 		mlx->fractal = is_mandelbrot;
+		init_scope(mlx);
 	}
 	draw_fractol(mlx, TRUE, mlx->fractal);
 }

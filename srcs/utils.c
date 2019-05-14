@@ -6,11 +6,30 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 12:01:51 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 16:17:24 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 16:26:30 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	init_scope(t_mlx *mlx)
+{
+	if (mlx->frac_nbr == MANDELBROT)
+	{
+		mlx->x_pad = 0.5;
+		mlx->y_pad = 0;
+	}
+	if (mlx->frac_nbr == JULIA)
+	{
+		mlx->x_pad = 0;
+		mlx->y_pad = 0;
+	}
+	if (mlx->frac_nbr == BURNING_SH)
+	{
+		mlx->x_pad = 0.5;
+		mlx->y_pad = -0.5;
+	}
+}
 
 int		usage(char *error)
 {

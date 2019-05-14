@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 08:52:20 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 15:42:52 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 16:25:42 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int				main(int ac, char **av)
 	if (input(&mlx, ac, av) == FAILURE)
 		return (FAILURE);
 	init_mlx(&mlx);
+	init_scope(&mlx);
 	draw_fractol(&mlx, FALSE, mlx.fractal);
 	mlx_hook(mlx.win, KEYPRESS, KEYPRESSMASK, &key_hook, &mlx);
 	mlx_loop(mlx.ptr);
