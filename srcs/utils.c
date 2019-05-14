@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 12:01:51 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 15:08:02 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:17:30 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ void	init_mlx(t_mlx *mlx)
 	mlx->img_str = NULL;
 	mlx->img_size = mlx->w * mlx->h;
 	mlx->ptr = mlx_init();
+	mlx->julia.re = -0.8;
+	mlx->julia.im = 0.156;
 	mlx->win = mlx_new_window(mlx->ptr, mlx->w, mlx->h, "Fractol");
 }

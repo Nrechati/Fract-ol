@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:31:22 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 14:00:12 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:27:44 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void		fill_pixel(t_mlx *mlx, int x, int y, int c)
 		mlx->img_str[x + mlx->w * y] = c;
 }
 
-int				draw_fractol(t_mlx *mlx, int flag)
+int 			draw_fractol(t_mlx *mlx, int flag
+						, int (*fractal)(t_mlx*, int, int))
 {
 	int x;
 	int y;
@@ -42,7 +43,7 @@ int				draw_fractol(t_mlx *mlx, int flag)
 		x = 0;
 		while (x < mlx->w)
 		{
-			if (is_mandelbrot(mlx, x, y) == SUCCESS)
+			if ((*fractal)(mlx, x, y) == SUCCESS)
 				fill_pixel(mlx, x, y, mlx->c);
 			x++;
 		}

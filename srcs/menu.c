@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 11:10:34 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 14:24:36 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:43:55 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void			draw_menu(t_mlx *mlx)
 	draw_square(mlx, 40, 180, 410);
 	mlx_string_put(mlx->ptr, mlx->win, 65, 420, WHITE, "Color    :  SPA");
 	draw_square(mlx, 40, 180, 460);
-	mlx_string_put(mlx->ptr, mlx->win, 65, 470, WHITE, "Reset    :  ENT");
+	mlx_string_put(mlx->ptr, mlx->win, 65, 470, WHITE, "Next     :  TAB");
 	draw_square(mlx, 20, 190, 510);
 	mlx_string_put(mlx->ptr, mlx->win, 65, 510, WHITE, "             W      ");
 	draw_square(mlx, 20, 160, 540);

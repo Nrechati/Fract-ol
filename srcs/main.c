@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 08:52:20 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 14:23:18 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:42:52 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ static int		key_hook(int key, t_mlx *mlx)
 		ft_close(mlx);
 	if (key == 15)
 		ft_reset(mlx);
+	if (key == 48)
+		ft_next(mlx);
+	if (key == 49)
+		ft_color(mlx);
 	if (key == 69 || key == 24 || key == 78 || key == 27)
 		ft_zoom(mlx, key);
 	if (key == 47 || key == 43)
@@ -36,19 +40,22 @@ static int		choose_fractal(t_mlx *mlx, char **av)
 	ft_strupper(fractal);
 	if (ft_strequ((fractal), "MANDELBROT"))
 	{
-		mlx->fractale = MANDELBROT;
+		mlx->fractal = is_mandelbrot;
+		mlx->frac_nbr = MANDELBROT;
 		ft_strdel(&fractal);
 		return (SUCCESS);
 	}
 	else if (ft_strequ((fractal), "JULIA"))
 	{
-		mlx->fractale = JULIA;
+		mlx->fractal = is_julia;
+		mlx->frac_nbr = JULIA;
 		ft_strdel(&fractal);
 		return (SUCCESS);
 	}
 	else if (ft_strequ((fractal), "BURNINGSHIP"))
 	{
-		mlx->fractale = BURNING_SH;
+		mlx->fractal = is_burning_ship;
+		mlx->frac_nbr = BURNING_SH;
 		ft_strdel(&fractal);
 		return (SUCCESS);
 	}
@@ -71,11 +78,11 @@ int				main(int ac, char **av)
 {
 	t_mlx	mlx;
 
-	mlx.fractale = 0;
+	mlx.fractal = NULL;
 	if (input(&mlx, ac, av) == FAILURE)
 		return (FAILURE);
 	init_mlx(&mlx);
-	draw_fractol(&mlx, FALSE);
+	draw_fractol(&mlx, FALSE, mlx.fractal);
 	mlx_hook(mlx.win, KEYPRESS, KEYPRESSMASK, &key_hook, &mlx);
 	mlx_loop(mlx.ptr);
 	return (SUCCESS);

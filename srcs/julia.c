@@ -6,27 +6,27 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 14:25:00 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 14:25:11 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:16:16 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int iterate_mandelbrot(t_mlx *mlx, t_comp c)
+static int		iterate_julia(t_mlx *mlx, t_comp pt)
 {
-	int i;
-	t_comp z;
-	t_comp bk;
+	int 	i;
+	t_comp	z;
+	t_comp	bk;
 
 	i = 0;
-	z.re = 0;
-	z.im = 0;
+	z.re = pt.re;
+	z.im = pt.im;
 	while (i < mlx->iter)
 	{
 		bk.re = z.re;
 		bk.im = z.im;
-		z.re = bk.re * bk.re - bk.im * bk.im + c.re;
-		z.im = 2 * bk.re * bk.im + c.im;
+		z.re = bk.re * bk.re - bk.im * bk.im + mlx->julia.re;
+		z.im = 2 * bk.re * bk.im + mlx->julia.im;
 		if (z.re * z.re + z.im * z.im > 4)
 			return (SUCCESS);
 		i++;
@@ -34,13 +34,13 @@ static int iterate_mandelbrot(t_mlx *mlx, t_comp c)
 	return (FAILURE);
 }
 
-int is_mandelbrot(t_mlx *mlx, int x, int y)
+int				is_julia(t_mlx *mlx, int x, int y)
 {
-	int i;
-	t_comp c;
+	int 	i;
+	t_comp	pt;
 
 	i = 0;
-	c.re = 1.5 * (x - mlx->w / 2) / (0.5 * mlx->zoom * mlx->w) + mlx->x_pad;
-	c.im = (y - mlx->h / 2) / (0.5 * mlx->zoom * mlx->h) + mlx->y_pad;
-	return (iterate_mandelbrot(mlx, c));
+	pt.re = 2 * (x - mlx->w2) / (mlx->zoom * mlx->w2) - mlx->x_pad;
+	pt.im = (y - mlx->h2) / (mlx->zoom * mlx->h2) + mlx->y_pad;
+	return (iterate_julia(mlx, pt));
 }
