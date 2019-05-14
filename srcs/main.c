@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 08:52:20 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 14:00:03 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 14:23:18 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int		key_hook(int key, t_mlx *mlx)
 {
 	if (key == 53)
 		ft_close(mlx);
+	if (key == 15)
+		ft_reset(mlx);
 	if (key == 69 || key == 24 || key == 78 || key == 27)
 		ft_zoom(mlx, key);
 	if (key == 47 || key == 43)

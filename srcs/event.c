@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 10:17:51 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 11:35:37 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 14:21:15 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	ft_close(t_mlx *mlx)
 void	ft_zoom(t_mlx *mlx, int key)
 {
 	if (key == 69 || key == 24)
-		mlx->zoom += 1;
-	else
-		mlx->zoom -= 1;
+		mlx->zoom += 0.1;
+	else if (mlx->zoom > 1)
+		mlx->zoom -= 0.1;
 	draw_fractol(mlx, TRUE);
 }
 
@@ -49,5 +49,14 @@ void	ft_iterate(t_mlx *mlx, int key)
 		mlx->iter += 100;
 	else if (mlx->iter > 100)
 		mlx->iter -= 100;
+	draw_fractol(mlx, TRUE);
+}
+
+void	ft_reset(t_mlx *mlx)
+{
+	mlx->x_pad = -0.5;
+	mlx->y_pad = 0;
+	mlx->zoom = 1;
+	mlx->iter = 100;
 	draw_fractol(mlx, TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:01:13 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 13:24:05 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 14:24:28 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define JULIA 2
 # define BURNING_SH 3
 # define BLACK 0x000000
+# define WHITE 0xffffff
 # define GREEN 0x006c26
 # define BLUE 0x166fe7
 # define ORANGE 0xff7f24
@@ -67,5 +68,6 @@ void			ft_close(t_mlx *mlx);
 void			ft_zoom(t_mlx *mlx, int key);
 void			ft_iterate(t_mlx *mlx, int key);
 void			ft_move(t_mlx *mlx, int key);
+void			ft_reset(t_mlx *mlx);
 
 #endif
