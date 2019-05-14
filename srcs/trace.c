@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:31:22 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 13:38:35 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 14:00:12 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int				draw_fractol(t_mlx *mlx, int flag)
 		x = 0;
 		while (x < mlx->w)
 		{
-			ft_printf("Fractal = %d\n", mlx->fractale);
 			if (is_mandelbrot(mlx, x, y) == SUCCESS)
 				fill_pixel(mlx, x, y, mlx->c);
 			x++;

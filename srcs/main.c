@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 08:52:20 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 13:37:00 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 14:00:03 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int				main(int ac, char **av)
 {
 	t_mlx	mlx;
 
+	mlx.fractale = 0;
 	if (input(&mlx, ac, av) == FAILURE)
 		return (FAILURE);
 	init_mlx(&mlx);
