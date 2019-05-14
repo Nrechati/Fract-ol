@@ -6,7 +6,7 @@
 #    By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/04 17:06:21 by nrechati          #+#    #+#              #
-#    Updated: 2019/05/14 10:38:54 by nrechati         ###   ########.fr        #
+#    Updated: 2019/05/14 12:02:02 by nrechati         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC += main.c
 SRC += menu.c
 SRC += trace.c
 SRC += event.c
+SRC += utils.c
 SRC += mandelbrot.c
 
 # *************** OBJ **************** #

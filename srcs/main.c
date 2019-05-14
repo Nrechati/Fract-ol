@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 08:52:20 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 11:39:06 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 13:27:02 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,44 +26,48 @@ static int		key_hook(int key, t_mlx *mlx)
 	return (SUCCESS);
 }
 
-static void		init_mlx(t_mlx *mlx)
+static int		choose_fractal(t_mlx *mlx, char **av)
 {
-	mlx->h = 720;
-	mlx->w = 1280;
-	mlx->c = BLUE;
-	mlx->x_pad = - 0.5;
-	mlx->y_pad = 0;
-	mlx->zoom = 1;
-	mlx->iter = 100;
-	mlx->img = NULL;
-	mlx->img_str = NULL;
-	mlx->img_size = mlx->w * mlx->h;
-	mlx->ptr = mlx_init();
-	mlx->win = mlx_new_window(mlx->ptr, mlx->w, mlx->h, "Fractol");
+	char *fractal;
+
+	fractal = ft_strdup(av[1]);
+	ft_strupper(fractal);
+	if (ft_strequ((fractal), "MANDELBROT"))
+	{
+		mlx->fractale = MANDELBROT;
+		ft_strdel(fractal);
+		return (SUCCESS);
+	}
+	else if (ft_strequ((fractal), "JULIA"))
+	{
+		mlx->fractale = JULIA;
+		ft_strdel(fractal);
+		return (SUCCESS);
+	}
+	else if (ft_strequ((fractal), "BURNINGSHIP"))
+	{
+		mlx->fractale = BURNING_SH;
+		ft_strdel(fractal);
+		return (SUCCESS);
+	}
+	ft_strdel(fractal);
+	return(FAILURE);
 }
 
-static int		input(int ac, char **av)
+static int		input(t_mlx *mlx, int ac, char **av)
 {
 	if (ac != 2)
-	{
-		ft_printf("Usage: ./Fractol [fractal_name]\n");
-		ft_printf("Possible choices:\n\t. -h [help]\n\t. Mandelbrot\n");
-		return (FAILURE);
-	}
+		return (usage("Wrong Number of Arguments"));
 	if (ft_strequ(av[1], "-h") == TRUE)
-	{
-		ft_printf("Help: ./Fractol [fractal_name]\n");
-		ft_printf("Possible choices:\n\t. -h [help]\n\t. Mandelbrot\n");
-		return (FAILURE);
-	}
-	return (SUCCESS);
+		return (usage("HELP:"));
+	return (choose_fractal(mlx, av));
 }
 
 int				main(int ac, char **av)
 {
 	t_mlx	mlx;
 
-	if (input(ac, av) == FAILURE)
+	if (input(&mlx, ac, av) == FAILURE)
 		return (FAILURE);
 	init_mlx(&mlx);
 	draw_fractol(&mlx, FALSE);
