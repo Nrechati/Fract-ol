@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 12:01:51 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 13:14:37 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 13:39:00 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	init_mlx(t_mlx *mlx)
 	mlx->x_pad = -0.5;
 	mlx->y_pad = 0;
 	mlx->zoom = 1;
+	mlx->fractale = 0;
 	mlx->iter = 100;
 	mlx->img = NULL;
 	mlx->img_str = NULL;

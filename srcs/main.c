@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 08:52:20 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 13:27:02 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/14 13:37:00 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,24 @@ static int		choose_fractal(t_mlx *mlx, char **av)
 	if (ft_strequ((fractal), "MANDELBROT"))
 	{
 		mlx->fractale = MANDELBROT;
-		ft_strdel(fractal);
+		ft_strdel(&fractal);
 		return (SUCCESS);
 	}
 	else if (ft_strequ((fractal), "JULIA"))
 	{
 		mlx->fractale = JULIA;
-		ft_strdel(fractal);
+		ft_strdel(&fractal);
 		return (SUCCESS);
 	}
 	else if (ft_strequ((fractal), "BURNINGSHIP"))
 	{
 		mlx->fractale = BURNING_SH;
-		ft_strdel(fractal);
+		ft_strdel(&fractal);
 		return (SUCCESS);
 	}
-	ft_strdel(fractal);
+	ft_strdel(&fractal);
+	ft_printf("\x1b[41m%s \x1b[0m", av[1]);
+	usage("is not a valid input");
 	return(FAILURE);
 }
 
