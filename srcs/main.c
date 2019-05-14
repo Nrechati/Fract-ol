@@ -6,13 +6,13 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 08:52:20 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/08 15:05:57 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/13 15:46:12 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int		key_hook(int key, t_map *map)
+/*
+int				key_hook(int key, t_map *map)
 {
 	if (key == 53)
 		ft_close(map);
@@ -30,21 +30,28 @@ int		key_hook(int key, t_map *map)
 		ft_rotate(map, key);
 	return (0);
 }
-
-int		main(int ac, char **av)
+*/
+static int		fractol_init(t_mlx *mlx, t_map *map, char **av)
 {
-	char	*line;
+	(void)av;
+	(void)map;
+	init_mlx(mlx);
+	return (1);
+}
+
+int				main(int ac, char **av)
+{
 	t_mlx	mlx;
 	t_map	map;
 
-	line = NULL;
-	if (ac != 2 || !fractol_parsing(&mlx, &map, line, av))
+	if (ac != 2)
 	{
-		ac != 2 ? ft_putendl(USAGE) : ft_putendl("Bad Input");
+		ft_putendl(USAGE);
 		return (0);
 	}
-	draw_fractol(&mlx, &map, 1);
-	mlx_hook(mlx.win, KEYPRESS, KEYPRESSMASK, &key_hook, &map);
+	fractol_init(&mlx, &map, av);
+	draw_fractol(&mlx, &map, 1, av);
+//	mlx_hook(mlx.win, KEYPRESS, KEYPRESSMASK, &key_hook, &map);
 	mlx_loop(mlx.ptr);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/04 17:06:21 by nrechati          #+#    #+#              #
-#    Updated: 2019/05/08 15:20:54 by nrechati         ###   ########.fr        #
+#    Updated: 2019/05/13 15:45:19 by nrechati         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,8 @@ LIB_AUX_DEPS = Libft/libft.a
 VPATH = ./srcs
 
 SRC += main.c
-SRC += event.c
-SRC += event2.c
-SRC += img.c
 SRC += init.c
 SRC += menu.c
-SRC += parsing.c
-SRC += project.c
 SRC += trace.c
 
 # *************** OBJ **************** #
