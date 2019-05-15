@@ -6,21 +6,21 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:01:13 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/15 17:55:36 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/15 18:05:56 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <math.h>
-# include <mlx.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <string.h>
-# include <limits.h>
 # include "libft.h"
+# include "mlx.h"
+# include <math.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <limits.h>
+# include <pthread.h>
+
 # define FAILURE -1
 # define SUCCESS 0
 # define FALSE 0
@@ -73,6 +73,15 @@ typedef struct	s_mlx
 	void		*win;
 	void		*fractal;
 }				t_mlx;
+
+typedef struct	s_thread
+{
+	t_mlx		*mlx;
+	pthread_t	id;
+	int			n;
+	int			i;
+	int			max;
+}				t_thread;
 
 int				is_mandelbrot(t_mlx *mlx, int x, int y);
 int				is_julia(t_mlx *mlx, int x, int y);
