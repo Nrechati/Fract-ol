@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 10:17:51 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/15 14:38:04 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/15 18:01:04 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,72 @@ void	ft_next(t_mlx *mlx)
 	draw_fractol(mlx, TRUE, mlx->fractal);
 }
 
+int		ft_mouse_zoom(int key, int x, int y, t_mlx *mlx)
+{
+	if (x > 0 && x < mlx->w && y > 0 && y < mlx->w)
+	{
+		if (key == 4)
+			mlx->zoom *= 1.5;
+		else if (key == 5)
+			mlx->zoom /= 1.5;
+	}
+	draw_fractol(mlx, TRUE, mlx->fractal);
+	return (0);
+}
+
+int		ft_mouse_julia(int x, int y, t_mlx *mlx)
+{
+	if (mlx->frac_nbr != JULIA || mlx->freeze == TRUE)
+		return (SUCCESS);
+	if (x > 0 && x < mlx->w && y > 0 && y < mlx->w)
+	{
+		mlx->julia.re = (double)x / mlx->w * 2 - 1;
+		mlx->julia.im = (double)y / mlx->h * 2 - 1;
+	}
+	draw_fractol(mlx, TRUE, mlx->fractal);
+	return (0);
+}
+
+void	ft_freeze_julia(t_mlx *mlx)
+{
+	if (mlx->freeze == FALSE)
+		mlx->freeze = TRUE;
+	else
+		mlx->freeze = FALSE;
+}
+
+void	ft_menu_color(t_mlx *mlx)
+{
+	if (mlx->menu_color == BLACK)
+		mlx->menu_color = WHITE;
+	else
+		mlx->menu_color = BLACK;
+	draw_fractol(mlx, TRUE, mlx->fractal);
+}
+
+void	ft_ret_color(t_mlx *mlx)
+{
+	if (mlx->ret == FALSE)
+		mlx->ret = TRUE;
+	else
+		mlx->ret = FALSE;
+	draw_fractol(mlx, TRUE, mlx->fractal);
+}
+
+void	ft_info(t_mlx *mlx)
+{
+	if (mlx->info == FALSE)
+		mlx->info = TRUE;
+	else
+		mlx->info = FALSE;
+	draw_fractol(mlx, TRUE, mlx->fractal);
+}
+
 void	ft_zoom(t_mlx *mlx, int key)
 {
 	if (key == 69 || key == 24)
 		mlx->zoom *= 1.5;
-	else if (mlx->zoom > 1)
+	else
 		mlx->zoom /= 1.5;
 	draw_fractol(mlx, TRUE, mlx->fractal);
 }
