@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 15:18:51 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 17:08:11 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/15 14:45:19 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,28 @@
 
 static int	iterate_burning_ship(t_mlx *mlx, t_comp c)
 {
-	t_comp z;
-	t_comp bk;
+	t_comp	z;
+	double	re_sq;
+	double	im_sq;
 
 	mlx->i = 0;
 	z.re = 0;
 	z.im = 0;
-	while (mlx->i < mlx->iter)
+	re_sq = 0;
+	im_sq = 0;
+	while (mlx->i <= mlx->iter && re_sq + im_sq <= 4)
 	{
-		bk.re = fabs(z.re);
-		bk.im = fabs(z.im);
-		z.re = bk.re * bk.re - bk.im * bk.im + c.re;
-		z.im = 2 * bk.re * bk.im + c.im;
-		if (z.re * z.re + z.im * z.im > 4)
-			return (SUCCESS);
+		z.re = fabs(z.re);
+		z.im = fabs(z.im);
+		z.im = (z.re + z.im) * (z.re + z.im) - re_sq - im_sq;
+		z.im += c.im;
+		z.re = re_sq - im_sq + c.re;
+		re_sq = z.re * z.re;
+		im_sq = z.im * z.im;
 		mlx->i++;
 	}
+	if (mlx->i <= mlx->iter)
+		return (SUCCESS);
 	return (FAILURE);
 }
 

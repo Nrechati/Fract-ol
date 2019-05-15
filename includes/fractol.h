@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:01:13 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/15 10:46:06 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/15 14:43:07 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@
 # define BURNING_SH 3
 # define BLACK 0x000000
 # define WHITE 0xffffff
-# define RED 0xFF0000
-# define GREEN 0x00FF00
-# define BLUE 0x0000FF
+# define RED 0xFF1001
+# define GREEN 0x10FF01
+# define BLUE 0x1001FF
 # define ORANGE 0xff7f24
 # define KEYPRESSMASK (1L << 0)
 # define KEYPRESS 2

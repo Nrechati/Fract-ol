@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 14:25:00 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 17:08:13 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/15 11:41:55 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,25 @@
 static int		iterate_julia(t_mlx *mlx, t_comp pt)
 {
 	t_comp	z;
-	t_comp	bk;
+	double	re_sq;
+	double	im_sq;
 
 	mlx->i = 0;
 	z.re = pt.re;
 	z.im = pt.im;
-	while (mlx->i < mlx->iter)
+	re_sq = 0;
+	im_sq = 0;
+	while (mlx->i <= mlx->iter && re_sq + im_sq <= 4)
 	{
-		bk.re = z.re;
-		bk.im = z.im;
-		z.re = bk.re * bk.re - bk.im * bk.im + mlx->julia.re;
-		z.im = 2 * bk.re * bk.im + mlx->julia.im;
-		if (z.re * z.re + z.im * z.im > 4)
-			return (SUCCESS);
+		re_sq = z.re * z.re;
+		im_sq = z.im * z.im;
+		z.im = (z.re + z.im) * (z.re + z.im) - re_sq - im_sq;
+		z.im += mlx->julia.im;
+		z.re = re_sq - im_sq + mlx->julia.re;
 		mlx->i++;
 	}
+	if (mlx->i <= mlx->iter)
+		return (SUCCESS);
 	return (FAILURE);
 }
 
