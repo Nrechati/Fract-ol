@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/14 16:42:33 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/15 11:16:06 by nrechati         ###   ########.fr       */
+/*   Created: 2019/05/14 10:17:51 by nrechati          #+#    #+#             */
+/*   Updated: 2019/05/15 11:17:12 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void	ft_next(t_mlx *mlx)
 void	ft_zoom(t_mlx *mlx, int key)
 {
 	if (key == 69 || key == 24)
-		mlx->zoom += 0.1;
+		mlx->zoom += 1;
 	else if (mlx->zoom > 1)
-		mlx->zoom -= 0.1;
+		mlx->zoom -= 1;
 	draw_fractol(mlx, TRUE, mlx->fractal);
 }
 

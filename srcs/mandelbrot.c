@@ -6,30 +6,39 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 10:22:17 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 17:08:16 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/15 11:04:38 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+static double		square(double nbr)
+{
+	return (nbr * nbr);
+}
+
 static int		iterate_mandelbrot(t_mlx *mlx, t_comp c)
 {
 	t_comp	z;
-	t_comp	bk;
+	double	re_sq;
+	double	im_sq;
 
 	mlx->i = 0;
 	z.re = 0;
 	z.im = 0;
-	while (mlx->i < mlx->iter)
+	re_sq = z.re * z.re;
+	im_sq = z.im * z.im;
+	while (mlx->i <= mlx->iter && re_sq + im_sq <= 4.0)
 	{
-		bk.re = z.re;
-		bk.im = z.im;
-		z.re = bk.re * bk.re - bk.im * bk.im + c.re;
-		z.im = 2 * bk.re * bk.im + c.im;
-		if (z.re * z.re + z.im * z.im > 4)
-			return (SUCCESS);
+		z.im = square(z.re + z.im) - re_sq - im_sq;
+		z.im += c.im;
+		z.re = re_sq - im_sq + c.re;
+		re_sq = square(z.re);
+		im_sq = square(z.im);
 		mlx->i++;
 	}
+	if (mlx->i <= mlx->iter)
+		return (SUCCESS);
 	return (FAILURE);
 }
 
