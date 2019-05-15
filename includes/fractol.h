@@ -6,68 +6,40 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:01:13 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/13 15:48:57 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/15 18:05:56 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <math.h>
-# include <mlx.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <string.h>
-#include <limits.h>
 # include "libft.h"
-# define USAGE "usage : ./fractol [fractal_name]"
-# define RED 0x353037
-# define GREEN 0x006c26
-# define BLUE 0x166fe7
+# include "mlx.h"
+# include <math.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <limits.h>
+# include <pthread.h>
+
+# define FAILURE -1
+# define SUCCESS 0
+# define FALSE 0
+# define TRUE 1
+# define MANDELBROT 1
+# define JULIA 2
+# define BURNING_SH 3
+# define BLACK 0x000000
+# define WHITE 0xffffff
+# define RED 0xFF1001
+# define BLUE 0x10FF01
+# define GREEN 0x1001FF
 # define ORANGE 0xff7f24
 # define KEYPRESSMASK (1L << 0)
+# define BUTTONPRESSMASK (1L << 2)
+# define MOTIONNOTIFYMASK (1L << 6)
 # define KEYPRESS 2
-
-typedef struct	s_mlx
-{
-	int			c;
-	int			l;
-	int			w;
-	int			*img_str;
-	int			img_size;
-	void		*ptr;
-	void		*img;
-	void		*win;
-}				t_mlx;
-
-typedef struct	s_map
-{
-	int			**tab;
-	double		pad;
-	double		w_xpad;
-	double		w_ypad;
-	double		hpad;
-	int			row;
-	int			col;
-	t_mlx		*mlx;
-}				t_map;
-
-typedef struct	s_pt
-{
-	double		x;
-	double		y;
-}				t_pt;
-
-typedef struct	s_dna
-{
-	double		len;
-	double		dx;
-	double		dy;
-	double		x;
-	double		y;
-	double		i;
-}				t_dna;
+# define BUTTONPRESS 4
+# define MOTIONNOTIFY 6
 
 typedef struct	s_comp
 {
@@ -75,22 +47,64 @@ typedef struct	s_comp
 	double	im;
 }				t_comp;
 
-void			init_mlx(t_mlx *mlx);
-void			init_dna(t_dna *dna);
-void			init_map(t_mlx *mlx, t_map *map);
-void			init_view(t_map *map);
-void			iso_project(t_pt *pt, t_map *map, int index_x, int index_y);
-void			para_project(t_pt *pt, t_map *map, int index_x, int index_y);
-int				draw_fractol(t_mlx *mlx, t_map *map, int flag, char **av);
+typedef struct	s_mlx
+{
+	int			c;
+	int			h;
+	int			h2;
+	int			w;
+	int			w2;
+	int			*img_str;
+	int			img_size;
+	int			frac_nbr;
+	int			i;
+	int			freeze;
+	int			info;
+	int			ret;
+	int			ret_color;
+	int			menu_color;
+	double		x_pad;
+	double		y_pad;
+	double		zoom;
+	double		iter;
+	t_comp		julia;
+	void		*ptr;
+	void		*img;
+	void		*win;
+	void		*fractal;
+}				t_mlx;
+
+typedef struct	s_thread
+{
+	t_mlx		*mlx;
+	pthread_t	id;
+	int			n;
+	int			i;
+	int			max;
+}				t_thread;
+
+int				is_mandelbrot(t_mlx *mlx, int x, int y);
+int				is_julia(t_mlx *mlx, int x, int y);
+int				is_burning_ship(t_mlx *mlx, int x, int y);
+int				draw_fractol(t_mlx *mlx, int flag
+						, int (*fractal)(t_mlx*, int, int));
 void			draw_menu(t_mlx *mlx);
-void			ft_close(t_map *map);
-void			ft_zoom(t_map *map, int key);
-void			ft_alt(t_map *map, int key);
-void			ft_move(t_map *map, int key);
-void			ft_proj(t_map *map);
-void			ft_color(t_map *map);
-void			ft_rotate(t_map *map, int key);
-void			init_img(t_mlx *mlx);
-void			fill_pixel(t_mlx *mlx, int x, int y, int c);
+int				usage(char *error);
+void			init_mlx(t_mlx *mlx);
+void			init_scope(t_mlx *mlx);
+int				get_color(t_mlx *mlx);
+void			ft_close(t_mlx *mlx);
+void			ft_zoom(t_mlx *mlx, int key);
+void			ft_iterate(t_mlx *mlx, int key);
+void			ft_move(t_mlx *mlx, int key);
+void			ft_reset(t_mlx *mlx);
+void			ft_next(t_mlx *mlx);
+void			ft_color(t_mlx *mlx);
+int				ft_mouse_zoom(int key, int x, int y, t_mlx *mlx);
+int				ft_mouse_julia(int x, int y, t_mlx *mlx);
+void			ft_freeze_julia(t_mlx *mlx);
+void			ft_info(t_mlx *mlx);
+void			ft_menu_color(t_mlx *mlx);
+void			ft_ret_color(t_mlx *mlx);
 
 #endif
