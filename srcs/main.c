@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 08:52:20 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/15 17:56:46 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 09:54:11 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int		key_hook(int key, t_mlx *mlx)
 	if (key == 0 || key == 1 || key == 2 || key == 13
 			|| key == 123 || key == 124 || key == 125 || key == 126)
 		ft_move(mlx, key);
-	//alt = 261
 	return (SUCCESS);
 }
 
