@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/17 16:34:03 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 16:38:06 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 16:52:50 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void			zoom_info(t_mlx *mlx)
 
 	zoom = NULL;
 	zoom_plus = NULL;
-	ft_asprintf(&zoom, "x %.1f", mlx->zoom);
-	if (ft_strlen(zoom) >= 15)
+	ft_asprintf(&zoom, "x %.1d", (int)mlx->zoom);
+	if (ft_strlen(zoom) >= 13)
 		mlx_string_put(mlx->ptr, mlx->win, 220, 80, mlx->menu_color, "OOR");
 	else if (mlx->zoom >= 10)
 	{
 		ft_asprintf(&zoom_plus, "%.3s.%.1sE%d"
-				, zoom, zoom + 3, ft_strlen(zoom) - 5);
+				, zoom, zoom + 2, ft_strlen(zoom) - 3);
 		mlx_string_put(mlx->ptr, mlx->win, 200, 80, mlx->menu_color, zoom_plus);
 		free(zoom_plus);
 	}
@@ -67,7 +67,7 @@ void			info_on(t_mlx *mlx)
 
 	iterations = NULL;
 	draw_rectangle(mlx, 75, 55, 40);
-	ft_asprintf(&iterations, "%.0f", mlx->iter);
+	ft_asprintf(&iterations, "%d", (int)mlx->iter);
 	mlx_string_put(mlx->ptr, mlx->win, 65, 50, mlx->menu_color, "Iterations :");
 	mlx_string_put(mlx->ptr, mlx->win, 220, 50, mlx->menu_color, iterations);
 	mlx_string_put(mlx->ptr, mlx->win, 65, 80, mlx->menu_color, "Zoom       :");
