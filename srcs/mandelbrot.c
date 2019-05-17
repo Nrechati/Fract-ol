@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 10:22:17 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 12:47:55 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 13:25:30 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static int		iterate_mandelbrot(t_mlx *mlx, t_comp c)
 	im_sq = 0;
 	while (i <= mlx->iter && re_sq + im_sq <= 4)
 	{
+		re_sq = z.re * z.re;
+		im_sq = z.im * z.im;
 		z.im = (z.re + z.im) * (z.re + z.im) - re_sq - im_sq;
 		z.im += c.im;
 		z.re = re_sq - im_sq + c.re;
-		re_sq = z.re * z.re;
-		im_sq = z.im * z.im;
 		i++;
 	}
 	if (i <= mlx->iter)

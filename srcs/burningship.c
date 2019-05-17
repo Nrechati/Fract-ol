@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 15:18:51 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 13:15:26 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 13:26:03 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static int	iterate_burning_ship(t_mlx *mlx, t_comp c)
 	im_sq = 0;
 	while (i <= mlx->iter && re_sq + im_sq <= 4)
 	{
+		re_sq = z.re * z.re;
+		im_sq = z.im * z.im;
 		z.re = fabs(z.re);
 		z.im = fabs(z.im);
 		z.im = (z.re + z.im) * (z.re + z.im) - re_sq - im_sq;
 		z.im += c.im;
 		z.re = re_sq - im_sq + c.re;
-		re_sq = z.re * z.re;
-		im_sq = z.im * z.im;
 		i++;
 	}
 	if (i <= mlx->iter)
