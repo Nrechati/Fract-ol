@@ -6,7 +6,7 @@
 #    By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/04 17:06:21 by nrechati          #+#    #+#              #
-#    Updated: 2019/05/14 17:11:43 by nrechati         ###   ########.fr        #
+#    Updated: 2019/05/17 16:35:37 by nrechati         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,16 @@ LIB_AUX_DEPS = Libft/libft.a
 VPATH = ./srcs
 
 SRC += main.c
-SRC += menu.c
 SRC += trace.c
-SRC += event.c
-SRC += utils.c
-SRC += color.c
 SRC += mandelbrot.c
 SRC += julia.c
 SRC += burningship.c
+SRC += menu.c
+SRC += more.c
+SRC += event.c
+SRC += options.c
+SRC += view.c
+SRC += utils.c
 
 # *************** OBJ **************** #
 

@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 10:22:17 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 14:16:52 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 16:15:37 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int		iterate_mandelbrot(t_mlx *mlx, t_comp c)
 	return (FAILURE);
 }
 
-static void	compute_line_mandelbrot(t_thread *thd, int y, t_comp c)
+static void		compute_line_mandelbrot(t_thread *thd, int y, t_comp c)
 {
 	int		x;
 	int		iter;
@@ -57,17 +57,18 @@ static void	compute_line_mandelbrot(t_thread *thd, int y, t_comp c)
 
 void			*is_mandelbrot(void *arg)
 {
-	int max;
-	int y;
-	t_comp c;
-	t_thread *thd;
+	int			max;
+	int			y;
+	t_comp		c;
+	t_thread	*thd;
 
 	thd = (t_thread *)arg;
 	y = thd->y;
 	max = y + thd->mlx->h_th;
 	while (y < max)
 	{
-		c.im = (y - thd->mlx->h2) / (thd->mlx->zoom * thd->mlx->h2) + thd->mlx->y_pad;
+		c.im = (y - thd->mlx->h2)
+				/ (thd->mlx->zoom * thd->mlx->h2) + thd->mlx->y_pad;
 		compute_line_mandelbrot(thd, y, c);
 		y++;
 	}

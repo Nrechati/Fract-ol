@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 14:25:00 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 14:16:42 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 16:16:19 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int		iterate_julia(t_mlx *mlx, t_comp pt)
 	return (FAILURE);
 }
 
-static void	compute_line_julia(t_thread *thd, int y, t_comp c)
+static void		compute_line_julia(t_thread *thd, int y, t_comp c)
 {
 	int		x;
 	int		iter;
@@ -57,17 +57,18 @@ static void	compute_line_julia(t_thread *thd, int y, t_comp c)
 
 void			*is_julia(void *arg)
 {
-	int max;
-	int y;
-	t_comp pt;
-	t_thread *thd;
+	int			max;
+	int			y;
+	t_comp		pt;
+	t_thread	*thd;
 
 	thd = (t_thread *)arg;
 	y = thd->y;
 	max = y + thd->mlx->h_th;
 	while (y < max)
 	{
-		pt.im = (y - thd->mlx->h2) / (thd->mlx->zoom * thd->mlx->h2) + thd->mlx->y_pad;
+		pt.im = (y - thd->mlx->h2)
+				/ (thd->mlx->zoom * thd->mlx->h2) + thd->mlx->y_pad;
 		compute_line_julia(thd, y, pt);
 		y++;
 	}

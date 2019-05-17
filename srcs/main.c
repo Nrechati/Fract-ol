@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 08:52:20 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 09:54:11 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 16:13:59 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,50 +27,54 @@ static int		key_hook(int key, t_mlx *mlx)
 	if (key == 259)
 		ft_menu_color(mlx);
 	if (key == 261)
-		ft_ret_color(mlx);
+		ft_reticule(mlx);
 	if (key == 256)
 		ft_info(mlx);
 	if (key == 69 || key == 24 || key == 78 || key == 27)
 		ft_zoom(mlx, key);
 	if (key == 47 || key == 43)
-		ft_iterate(mlx,key);
+		ft_iterate(mlx, key);
 	if (key == 0 || key == 1 || key == 2 || key == 13
 			|| key == 123 || key == 124 || key == 125 || key == 126)
 		ft_move(mlx, key);
 	return (SUCCESS);
 }
 
-static int		choose_fractal(t_mlx *mlx, char **av)
+static int		find_fractal(t_mlx *mlx, char *fractal)
 {
-	char *fractal;
-
-	fractal = ft_strdup(av[1]);
-	ft_strupper(fractal);
 	if (ft_strequ((fractal), "MANDELBROT"))
 	{
 		mlx->fractal = is_mandelbrot;
 		mlx->frac_nbr = MANDELBROT;
-		ft_strdel(&fractal);
 		return (SUCCESS);
 	}
 	else if (ft_strequ((fractal), "JULIA"))
 	{
 		mlx->fractal = is_julia;
 		mlx->frac_nbr = JULIA;
-		ft_strdel(&fractal);
 		return (SUCCESS);
 	}
 	else if (ft_strequ((fractal), "BURNINGSHIP"))
 	{
 		mlx->fractal = is_burning_ship;
 		mlx->frac_nbr = BURNING_SH;
-		ft_strdel(&fractal);
 		return (SUCCESS);
 	}
-	ft_strdel(&fractal);
-	ft_printf("\x1b[41m%s \x1b[0m", av[1]);
+	ft_printf("\x1b[41m%s \x1b[0m", fractal);
 	usage("is not a valid input");
-	return(FAILURE);
+	return (FAILURE);
+}
+
+static int		choose_fractal(t_mlx *mlx, char **av)
+{
+	int		ret;
+	char	*fractal;
+
+	fractal = ft_strdup(av[1]);
+	ft_strupper(fractal);
+	ret = find_fractal(mlx, fractal);
+	ft_strdel(&fractal);
+	return (ret);
 }
 
 static int		input(t_mlx *mlx, int ac, char **av)

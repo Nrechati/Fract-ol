@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 12:01:51 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 12:57:16 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 16:14:34 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ void	init_scope(t_mlx *mlx)
 	}
 }
 
+int		get_color(t_mlx *mlx, int iter)
+{
+	int		color;
+
+	color = (1 - (iter / mlx->iter)) * mlx->c;
+	return (color);
+}
+
 int		usage(char *error)
 {
 	ft_printf("\x1b[41mFractol: %s\n\x1b[0m", error);
@@ -43,9 +51,9 @@ int		usage(char *error)
 void	init_mlx(t_mlx *mlx)
 {
 	mlx->h = 720;
-	mlx->h2 = mlx->h/2;
+	mlx->h2 = mlx->h / 2;
 	mlx->w = 1280;
-	mlx->w2 = mlx->w/2;
+	mlx->w2 = mlx->w / 2;
 	mlx->c = GREEN;
 	mlx->zoom = 1;
 	mlx->iter = 100;

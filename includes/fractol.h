@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:01:13 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 13:14:37 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 16:36:22 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int				usage(char *error);
 void			init_mlx(t_mlx *mlx);
 void			init_scope(t_mlx *mlx);
 int				get_color(t_mlx *mlx, int iter);
+void			zoom_info(t_mlx *mlx);
+void			info_on(t_mlx *mlx);
 void			ft_close(t_mlx *mlx);
 void			ft_zoom(t_mlx *mlx, int key);
 void			ft_iterate(t_mlx *mlx, int key);
@@ -105,6 +107,6 @@ int				ft_mouse_julia(int x, int y, t_mlx *mlx);
 void			ft_freeze_julia(t_mlx *mlx);
 void			ft_info(t_mlx *mlx);
 void			ft_menu_color(t_mlx *mlx);
-void			ft_ret_color(t_mlx *mlx);
+void			ft_reticule(t_mlx *mlx);
 
 #endif

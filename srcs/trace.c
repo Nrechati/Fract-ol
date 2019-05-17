@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:31:22 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 12:50:11 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 16:18:08 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void			fill_pixel(t_mlx *mlx, int x, int y, int c)
 		mlx->img_str[x + mlx->w * y] = c;
 }
 
-int 			draw_fractol(t_mlx *mlx, int flag
-						, void *(*fractal)(void *))
+int				draw_fractol(t_mlx *mlx, int flag
+					, void *(*fractal)(void *))
 {
 	int			i;
 	t_thread	thd[THREAD];
