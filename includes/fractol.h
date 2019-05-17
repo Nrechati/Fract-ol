@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:01:13 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 12:59:38 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 13:14:37 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct	s_mlx
 	int			h2;
 	int			w;
 	int			w2;
-	int			i;
 	int			*img_str;
 	int			img_size;
 	int			frac_nbr;
@@ -84,8 +83,8 @@ typedef struct	s_thread
 }				t_thread;
 
 void			*is_mandelbrot(void *arg);
-int				is_julia(t_mlx *mlx, int x, int y);
-int				is_burning_ship(t_mlx *mlx, int x, int y);
+void			*is_julia(void *arg);
+void			*is_burning_ship(void *arg);
 int				draw_fractol(t_mlx *mlx, int flag
 						, void *(*fractal)(void *));
 void			draw_menu(t_mlx *mlx);
