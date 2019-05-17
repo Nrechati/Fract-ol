@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:31:22 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/14 17:11:58 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 12:50:11 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,34 @@ static void		init_img(t_mlx *mlx)
 	mlx->img_str = (int *)mlx_get_data_addr(mlx->img, &bpp, &s_l, &endian);
 }
 
-static void		fill_pixel(t_mlx *mlx, int x, int y, int c)
+void			fill_pixel(t_mlx *mlx, int x, int y, int c)
 {
 	if (x >= 0 && y >= 0 && x < mlx->w && y < mlx->h)
 		mlx->img_str[x + mlx->w * y] = c;
 }
 
 int 			draw_fractol(t_mlx *mlx, int flag
-						, int (*fractal)(t_mlx*, int, int))
+						, void *(*fractal)(void *))
 {
-	int x;
-	int y;
+	int			i;
+	t_thread	thd[THREAD];
 
 	if (flag == TRUE)
 		mlx_destroy_image(mlx->ptr, mlx->img);
 	init_img(mlx);
-	y = 0;
-	while (y < mlx->h)
+	i = 0;
+	while (i < THREAD)
 	{
-		x = 0;
-		while (x < mlx->w)
-		{
-			if ((*fractal)(mlx, x, y) == SUCCESS)
-				fill_pixel(mlx, x, y, get_color(mlx));
-			x++;
-		}
-		y++;
+		thd[i].mlx = mlx;
+		thd[i].y = i * mlx->h_th;
+		pthread_create(&(thd[i].id), NULL, fractal, (void *)&(thd[i]));
+		i++;
+	}
+	i = 0;
+	while (i < THREAD)
+	{
+		pthread_join(thd[i].id, NULL);
+		i++;
 	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	draw_menu(mlx);

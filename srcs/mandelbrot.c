@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 10:22:17 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/15 11:34:19 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 12:47:55 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,51 @@
 
 static int		iterate_mandelbrot(t_mlx *mlx, t_comp c)
 {
+	int		i;
 	t_comp	z;
 	double	re_sq;
 	double	im_sq;
 
-	mlx->i = 0;
+	i = 0;
 	z.re = 0;
 	z.im = 0;
 	re_sq = 0;
 	im_sq = 0;
-	while (mlx->i <= mlx->iter && re_sq + im_sq <= 4)
+	while (i <= mlx->iter && re_sq + im_sq <= 4)
 	{
 		z.im = (z.re + z.im) * (z.re + z.im) - re_sq - im_sq;
 		z.im += c.im;
 		z.re = re_sq - im_sq + c.re;
 		re_sq = z.re * z.re;
 		im_sq = z.im * z.im;
-		mlx->i++;
+		i++;
 	}
-	if (mlx->i <= mlx->iter)
-		return (SUCCESS);
+	if (i <= mlx->iter)
+		return (i);
 	return (FAILURE);
 }
 
-int				is_mandelbrot(t_mlx *mlx, int x, int y)
+void			*is_mandelbrot(void *arg)
 {
-	int 	i;
-	t_comp	c;
+	int			iter = 0;
+	int			max;
+	int			y;
+	t_comp		c;
+	t_thread	*thd;
 
-	i = 0;
-	c.re = 2 * (x - mlx->w2) / (mlx->zoom * mlx->w2) - mlx->x_pad;
-	c.im = (y - mlx->h2) / (mlx->zoom * mlx->h2) + mlx->y_pad;
-	return (iterate_mandelbrot(mlx, c));
+	thd = (t_thread*)arg;
+	y = thd->y;
+	max = y + thd->mlx->h_th;
+	while (y < max)
+	{
+		c.im = (y - thd->mlx->h2) / (thd->mlx->zoom * thd->mlx->h2) + thd->mlx->y_pad;
+		for (int x = 0 ; x < thd->mlx->w ; x++)
+		{
+			c.re = 2 * (x - thd->mlx->w2) / (thd->mlx->zoom * thd->mlx->w2) - thd->mlx->x_pad;
+			if ((iter = iterate_mandelbrot(thd->mlx, c)) != FAILURE)
+				fill_pixel(thd->mlx, x, y, get_color(thd->mlx, iter));
+		}
+		y++;
+	}
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:01:13 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/15 18:05:56 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 12:59:38 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define KEYPRESS 2
 # define BUTTONPRESS 4
 # define MOTIONNOTIFY 6
+# define THREAD 30
 
 typedef struct	s_comp
 {
@@ -54,15 +55,16 @@ typedef struct	s_mlx
 	int			h2;
 	int			w;
 	int			w2;
+	int			i;
 	int			*img_str;
 	int			img_size;
 	int			frac_nbr;
-	int			i;
 	int			freeze;
 	int			info;
 	int			ret;
 	int			ret_color;
 	int			menu_color;
+	int			h_th;
 	double		x_pad;
 	double		y_pad;
 	double		zoom;
@@ -78,21 +80,20 @@ typedef struct	s_thread
 {
 	t_mlx		*mlx;
 	pthread_t	id;
-	int			n;
-	int			i;
-	int			max;
+	int			y;
 }				t_thread;
 
-int				is_mandelbrot(t_mlx *mlx, int x, int y);
+void			*is_mandelbrot(void *arg);
 int				is_julia(t_mlx *mlx, int x, int y);
 int				is_burning_ship(t_mlx *mlx, int x, int y);
 int				draw_fractol(t_mlx *mlx, int flag
-						, int (*fractal)(t_mlx*, int, int));
+						, void *(*fractal)(void *));
 void			draw_menu(t_mlx *mlx);
+void			fill_pixel(t_mlx *mlx, int x, int y, int c);
 int				usage(char *error);
 void			init_mlx(t_mlx *mlx);
 void			init_scope(t_mlx *mlx);
-int				get_color(t_mlx *mlx);
+int				get_color(t_mlx *mlx, int iter);
 void			ft_close(t_mlx *mlx);
 void			ft_zoom(t_mlx *mlx, int key);
 void			ft_iterate(t_mlx *mlx, int key);

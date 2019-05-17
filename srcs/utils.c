@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 12:01:51 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/15 18:01:34 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 12:57:16 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void	init_mlx(t_mlx *mlx)
 	mlx->ret = FALSE;
 	mlx->ret_color = RED;
 	mlx->menu_color = BLACK;
+	mlx->h_th = mlx->h / THREAD;
 	mlx->win = mlx_new_window(mlx->ptr, mlx->w, mlx->h, "Fractol");
 }
