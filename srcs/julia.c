@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 14:25:00 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 13:22:11 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 14:16:42 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,37 @@ static int		iterate_julia(t_mlx *mlx, t_comp pt)
 	return (FAILURE);
 }
 
+static void	compute_line_julia(t_thread *thd, int y, t_comp c)
+{
+	int		x;
+	int		iter;
+
+	iter = 0;
+	x = 0;
+	while (x < thd->mlx->w)
+	{
+		c.re = 2 * (x - thd->mlx->w2)
+				/ (thd->mlx->zoom * thd->mlx->w2) - thd->mlx->x_pad;
+		if ((iter = iterate_julia(thd->mlx, c)) != FAILURE)
+			fill_pixel(thd->mlx, x, y, get_color(thd->mlx, iter));
+		x++;
+	}
+}
+
 void			*is_julia(void *arg)
 {
-	int			iter = 0;
-	int			max;
-	int			y;
-	t_comp		pt;
-	t_thread	*thd;
+	int max;
+	int y;
+	t_comp pt;
+	t_thread *thd;
 
-	thd = (t_thread*)arg;
+	thd = (t_thread *)arg;
 	y = thd->y;
 	max = y + thd->mlx->h_th;
 	while (y < max)
 	{
 		pt.im = (y - thd->mlx->h2) / (thd->mlx->zoom * thd->mlx->h2) + thd->mlx->y_pad;
-		for (int x = 0 ; x < thd->mlx->w ; x++)
-		{
-			pt.re = 2 * (x - thd->mlx->w2) / (thd->mlx->zoom * thd->mlx->w2) - thd->mlx->x_pad;
-			if ((iter = iterate_julia(thd->mlx, pt)) != FAILURE)
-				fill_pixel(thd->mlx, x, y, get_color(thd->mlx, iter));
-		}
+		compute_line_julia(thd, y, pt);
 		y++;
 	}
 	return (NULL);
