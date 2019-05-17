@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/17 16:05:24 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 16:05:53 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/17 17:54:29 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	ft_reset(t_mlx *mlx)
 {
-	mlx->x_pad = 0.5;
-	mlx->y_pad = 0;
+	init_scope(mlx);
 	mlx->zoom = 1;
 	mlx->iter = 100;
 	draw_fractol(mlx, TRUE, mlx->fractal);
