@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/17 16:05:24 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 17:54:29 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/20 12:08:51 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void	ft_next(t_mlx *mlx)
 		mlx->fractal = is_mandelbrot;
 		init_scope(mlx);
 	}
+	mlx->zoom = 1;
 	draw_fractol(mlx, TRUE, mlx->fractal);
 }
