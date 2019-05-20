@@ -6,7 +6,7 @@
 #    By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/04 17:06:21 by nrechati          #+#    #+#              #
-#    Updated: 2019/05/17 16:35:37 by nrechati         ###   ########.fr        #
+#    Updated: 2019/05/17 18:10:23 by nrechati         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,8 +58,10 @@ $(NAME): $(OBJ) $(LIB_AUX_DEPS)
 	@gcc $(OBJ) $(MLX) -o $(NAME) $(LDFLAGS)
 	$(GCSUCCES)
 
-Libft/libft.a: Libft Libft/srcs
+Libft/libft.a: FORCE
 	@make -C Libft
+
+FORCE:
 
 $(OBJ_PATH)%.o: %.c Makefile $(AUX_DEPS)
 	@mkdir -p $(OBJ_PATH)
