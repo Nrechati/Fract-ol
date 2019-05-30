@@ -6,7 +6,7 @@
 #    By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/04 17:06:21 by nrechati          #+#    #+#              #
-#    Updated: 2019/05/17 18:10:23 by nrechati         ###   ########.fr        #
+#    Updated: 2019/05/30 14:32:50 by nrechati         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 # *************** GCC **************** #
 
 MLX = -I /usr/local/include -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
-CFLAGS = -Wall -Wextra -Werror $(LIB_DIR)
+CFLAGS = -Wall -Wextra -Werror -Ofast $(LIB_DIR)
 FSANITIZE = -fsanitize=address
 
 GCSUCCES = @echo "\033[33;32m===> Fract'ol Compil\tSUCCESS"

@@ -6,7 +6,7 @@
 /*   By: nrechati <nrechati@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:01:13 by nrechati          #+#    #+#             */
-/*   Updated: 2019/05/17 17:54:14 by nrechati         ###   ########.fr       */
+/*   Updated: 2019/05/30 14:30:46 by nrechati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define KEYPRESS 2
 # define BUTTONPRESS 4
 # define MOTIONNOTIFY 6
-# define THREAD 30
+# define THREAD 16
 
 typedef struct	s_comp
 {
