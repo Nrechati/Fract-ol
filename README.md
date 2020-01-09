@@ -87,3 +87,5 @@ I used a lot of Bruce Dawson's work to optimize mine at [Blog here](https://rand
 ## Disclaimer
 
 This project was done in a **single week** and is one of my **early C project @42 Paris**. In particular regarding graphic computing. But it is also one of the first I was proud to show so I decided to keep it public. I know a lot a this **C implementation could be nicer,** more optimize, and a lot of feature could have been added. **So just keep in mind this is an early student work**.
+
+> **Note** : Program was built on MacOS Mojave and I know there is some workaround to do to compile on Linux as well (*mostly for mlx to work*)
