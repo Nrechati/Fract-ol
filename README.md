@@ -1,4 +1,4 @@
-# Welcome to Fract'ol!
+# Welcome to Fract'ol
 
 This project is an introduction to graphic programming in **C** @42 
 It uses a simple homemade graphic library called **MinilibX**
@@ -17,9 +17,9 @@ To run this program :
 
 This program will compute and display **three types of Fractal** 
 
--  *Mandelbrot set*	[https://fr.wikipedia.org/wiki/Ensemble_de_Mandelbrot](https://fr.wikipedia.org/wiki/Ensemble_de_Mandelbrot)
-- *Julia set* [https://fr.wikipedia.org/wiki/Ensemble_de_Julia](https://fr.wikipedia.org/wiki/Ensemble_de_Julia)
-- *Burning ship set* [https://fr.wikipedia.org/wiki/Fractale_burning_ship](https://fr.wikipedia.org/wiki/Fractale_burning_ship)
+-  [Mandelbrot set](https://fr.wikipedia.org/wiki/Ensemble_de_Mandelbrot)
+- [Julia set](https://fr.wikipedia.org/wiki/Ensemble_de_Julia)
+- [Burning ship set](https://fr.wikipedia.org/wiki/Fractale_burning_ship)
 
 The program will also offer **3 different color** gradients for a nicer display 
 And basic **user input keys**, **features** and **usage** to interact with it
@@ -42,76 +42,48 @@ In addition to core feature *(i.e mandatory part of the subject)*, few features 
 This section will explain how to use the program *(note that all key-binds also appear in the menu inside the window)*
 
 ### Usage
-`Usage: ./Fractol [fractal_name]`
-`Possible choices:`
-`	. -h [help]`
-`	. Mandelbrot`
-`	. Julia`
-`	. BurningShip`
+![Usage](./Ressources/Screenshot/usage.png)
 > **Note** : Name input is NOT case sensitive
 
 ### Key-Binds
 
 - `Spacebar` to switch between color gradient
+- `Escape` to exit program
+- `Shift` to Freeze Julia
+- `>` and `<` to increase/decrease iterations count
+- `Tab` to switch between fractales
+- `wasd` to move
+- `Ctrl` to trigger Zoom and Iterations menu
+- `Option` to trigger zoom reticule
+- `Command` to switch menu color 
+
+## Fractals
+
+### Mandelbrot
+
+![Mandelbrot set](https://wikimedia.org/api/rest_v1/media/math/render/svg/cdc91da4c99377dd51c6178f427ec0892bbb5591)
+ ![Mandelbrot](./Ressources/Screenshot/Mandelbrot.png)
+
+### Julia
+
+![enter image description here](https://wikimedia.org/api/rest_v1/media/math/render/svg/ec33939f7980d95a8a6ab30a7f9c672f02a69c5d)
+where the zero value is defined by mouse cursor x and y
+![Julia](./Ressources/Screenshot/Julia.png)
+
+### Burning Ship
+![enter image description here](https://wikimedia.org/api/rest_v1/media/math/render/svg/c163d06790d201f33305e5eae47b523a6c8b1e33)
+![Burning Ship](./Ressources/Screenshot/Burning_ship.png)
 
 ## Optimization
 
-You can rename the current file by clicking the file name in the navigation bar or by clicking the **Rename** button in the file explorer.
+### Multi-Threading
+In this program there is a basic multi-threading implementation. As each pixel is responsible for his own computation we can easily split the window according to the number of thread. Per default 8 thread are set as I worked on a Quad-Core CPU. So each logical core is responsible for a 8th of the rendering
 
-## Further ideas
+### Computing
+As a lot of computing is required to render those fractal, optimizing number of simple calculation in each pixel create a lot of space for optimization. The main idea is to store recurrent result such as square roots and square in complex number and reuse them.
 
-You can delete the current file by clicking the **Remove** button in the file explorer. The file will be moved into the **Trash** folder and automatically deleted after 7 days of inactivity.
+I used a lot of Bruce Dawson's work to optimize mine at [Blog here](https://randomascii.wordpress.com/2011/08/13/faster-fractals-through-algebra/)
 
 ## Disclaimer
 
-You can delete the current file by clicking the **Remove** button in the file explorer. The file will be moved into the **Trash** folder and automatically deleted after 7 days of inactivity.
-
-## Credits
-
-You can export the current file by clicking **Export to disk** in the menu. You can choose to export the file as plain Markdown, as HTML using a Handlebars template or as a PDF.
-
-
-> [https://randomascii.wordpress.com/2011/08/13/faster-fractals-through-algebra/](https://randomascii.wordpress.com/2011/08/13/faster-fractals-through-algebra/)
-
-# Markdown extensions
-
-StackEdit extends the standard Markdown syntax by adding extra **Markdown extensions**, providing you with some nice features.
-
-> **ProTip:** You can disable any **Markdown extension** in the **File properties** dialog.
-
-
-## SmartyPants
-
-SmartyPants converts ASCII punctuation characters into "smart" typographic punctuation HTML entities. For example:
-
-|                |ASCII                          |HTML                         |
-|----------------|-------------------------------|-----------------------------|
-|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
-|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
-
-## UML diagrams
-
-You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
-
-```mermaid
-sequenceDiagram
-Alice ->> Bob: Hello Bob, how are you?
-Bob-->>John: How about you John?
-Bob--x Alice: I am good thanks!
-Bob-x John: I am good thanks!
-Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
-
-Bob-->Alice: Checking with John...
-Alice->John: Yes... John, how are you?
-```
-
-And this will produce a flow chart:
-
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-```
+This project was done in a **single week** and is one of my **early C project @42 Paris**. In particular regarding graphic computing. But it is also one of the first I was proud to show so I decided to keep it public. I know a lot a this **C implementation could be nicer,** more optimize, and a lot of feature could have been added. **So just keep in mind this is an early student work**.
